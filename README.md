@@ -26,6 +26,7 @@ The $m$-th cell contains the triples whose relations are omitted in the $m$-th r
 - `conditions`: Corresponding conditions when omitting semantic triples. It is an $(M-1)\times 1$ cell, as the first round of compression won't produce any conditions. The $m$-th cell contains conditions of the $m+1$ round. For example, condition $[a,b]$ in the third round, represents that the corresponding relation has the maximum occurrence probability in the probability matrix made by the $a$-th triple omitted in the first round, and the $b$-th triple omitted in the second round.
 
 ### Test example
+The example is demonstrated in [example.m](./example/m), the mat file [example.mat](./example.mat) contains extracted semantic triples and knowledge graph. The variable `sample_map` indicates the corresponding sample time to sample index.
 #### Test environment
 - System: Windows 11
 - CPU: Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz(12CPUs), ~2.6GHz
