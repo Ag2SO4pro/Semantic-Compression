@@ -42,7 +42,7 @@ The shared probability graph is generated from the data file [2008-06-29-BB-Form
 
 Semantic triples to be compressed (`G`) is generated from [2008-06-30-BB-Formatted.txt](./2008-06-30-BB-Formatted.txt). We choose the sensor triggering condition of 17:38 as the sent data. All sensors are included. For example, if 'M01' is triggered by person 0 but not 1, triples ('M01' ' on' '0') and ('M01' 'off' '1') will both be included.
 
-The experiment data `G` and `G_shared` is provided in the sample mat file.
+The experiment data `G` and `G_shared` is provided in [example.mat](example.mat).
 
 #### Experiment result
 ![example](./example.jpg)
