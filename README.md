@@ -16,9 +16,9 @@ To perform semantic compression, call the function as:
 The first column of `r` is the name of relationship (string), and the second column is an array containing the samples where the relationship is established.
 And example of `G_shared` and `G` is given in the example file.
 - (Optional) `paint`: Whether to show the computation load figure or not. Input any non-zero value to show the figure. It is worth noting that triples that can't be omitted in the final round still take computation time, so the actual run time will be longer than that demonstrated in the output figure.
-Default value: 0 (disable).
+**Default value: 0 (disable)**.
 - (Optional) `max_round`: The maximum round of semantic compression. The program will stop when the current semantic compression round arrives the input value (should be bigger than 1), or no more semantic triples can be omitted. 
-Default: +inf. The program stops automatically when no more semantic triples can be omitted.
+**Default: +inf.** The program stops automatically when no more semantic triples can be omitted.
 ### Output parameters:
 - `send`: Semantic triples that needs to be sent. Same format as input `G`.
 - `omit`: Semantic triples whose relations are omitted. It will be a $M \times 1$ cell and $M$ is the number of rounds occurs during compression.
