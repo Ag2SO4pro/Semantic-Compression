@@ -23,7 +23,7 @@ And example of `G_shared` and `G` is given in the example file.
 - `send`: Semantic triples that needs to be sent. Same format as input `G`.
 - `omit`: Semantic triples whose relations are omitted. It will be a $M \times 1$ cell and $M$ is the number of rounds occurs during compression.
 The $m$-th cell contains the triples whose relations are omitted in the $m$-th round.
-- `conditions`: Corresponding conditions when omitting semantic triples. It is an $(M-1)\times 1$ cell, as the first round of compression won't produce any conditions. The $m$-th cell contains conditions of the $m+1$ round. For example, condition $[a,b]$ in the third round, represents that the corresponding relation has the maximum occurrence probability in the probability matrix made by the $a$-th triple omitted in the first round, and the $b$-th triple omitted in the second round.
+- `conditions`: Corresponding conditions when omitting semantic triples. It is an $(M-1)\times 1$ cell, as the first round of compression won't produce any conditions. The $m$-th cell contains conditions of the $m+1$ round. For example, condition $[a,b]$ in the third round, represents that the corresponding relation has the maximum occurrence probability when the $a$-th and $b$-th triple omitted last round, or in the last cycle this round if $a$ or $b$ is larger than the number of triples omitted last round.
 
 ### Test example
 The example is demonstrated in [example.m](./example/m), the mat file [example.mat](./example.mat) contains extracted semantic triples and knowledge graph. The variable `sample_map` indicates the corresponding sample time to sample index.
