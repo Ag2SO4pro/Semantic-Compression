@@ -1,4 +1,6 @@
+% First round of compression
 function [G1,O1,M1,T1]=firstRound(G,G_shared)
+    % Initialize
     num_G=size(G,1);
     num_Gs=size(G_shared);
     omit_num=0;
@@ -9,6 +11,8 @@ function [G1,O1,M1,T1]=firstRound(G,G_shared)
     M1=cell(1,3);
     T1=0;
     tic;
+    % Go over all triples to be sent and compare with 
+    % existing quadruples
     for i=1:num_G
         isOmit=0;
         must=0;
@@ -30,12 +34,15 @@ function [G1,O1,M1,T1]=firstRound(G,G_shared)
                     end
                 end
                 if index==-1
+                    % Relation not exists
+                    % Must be sent
                     must=1;
                     must_num=must_num+1;
                     [M1{must_num,:}]=deal(G{i,:});
                     break;
                 end
                 if max_r==index
+                    % Current relation has the largest probability
                     omit_num=omit_num+1;
                     [O1{omit_num,:}]=deal(G{i,:});
                     isOmit=1;
@@ -50,6 +57,8 @@ function [G1,O1,M1,T1]=firstRound(G,G_shared)
             end
         end
         if same==0
+            % No same head-tail entity pairs
+            % Must be sent
             must=1;
             must_num=must_num+1;
             [M1{must_num,:}]=deal(G{i,:});

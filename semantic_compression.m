@@ -1,4 +1,6 @@
+% Core function. See its usage in README.md
 function [send,omit,conditions]=semantic_compression(G,G_shared,paint,max_round)
+    % Processing inputs
     if nargin==2
         max_round=+inf;
         paint=0;
@@ -14,7 +16,9 @@ function [send,omit,conditions]=semantic_compression(G,G_shared,paint,max_round)
         omit_num=zeros(1,max_round);
         conditions=cell(1,max_round-1);
     end
+    % Initialize
     reach_count=0;
+    % First round of compression
    [G1,O1,M1,T1]=firstRound(G,G_shared);
     times(1)=T1;
     reach_count=reach_count+1;
@@ -33,10 +37,8 @@ function [send,omit,conditions]=semantic_compression(G,G_shared,paint,max_round)
                 conditions{i-1}=c;
             end
             Go=Gn;
-            if isempty(On{1,1})||length(On)<1
-                break;
-            end
             reach_count=reach_count+1;
+            % Break when there are no triples to send
             if length(Go)<1||isempty(Go{1,1})
                 break;
             end
@@ -47,6 +49,7 @@ function [send,omit,conditions]=semantic_compression(G,G_shared,paint,max_round)
         end
     end
     send=[Gn(:,:);M1(:,:)];
+    % Filt empty cells
     send(cellfun(@isempty,send))=[];
     if paint
     %% Plot

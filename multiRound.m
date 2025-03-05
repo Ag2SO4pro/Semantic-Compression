@@ -1,4 +1,5 @@
 function [Gn,On,conditions,Tn]=multiRound(Go_,Oo,G_shared,n)
+    % Initialize
     Go=Go_;
     num=size(Go,1);
     omit_num=0;
@@ -7,13 +8,17 @@ function [Gn,On,conditions,Tn]=multiRound(Go_,Oo,G_shared,n)
     Gn=cell(1,3);
     Tn=0;
     conditions=cell(1,n-1);
+    % Whether there are new triples omitted in the last cycle
     have_updated=0;
     Oo_=cat(1,Oo{:});
     while(1)
         tic;
+        % Go over all triples to be sent
         for i=1:num
             delta=findQuadruple(G_shared,Go(i,:));
+            % Combinations for omitted triples
             comb=nchoosek(1:size(Oo_,1),n-1);
+            % The probability matrix
             P=getPMatrix(delta,Oo_,G_shared,comb);
             index=-1;
             for r=1:size(delta{2},1)
@@ -23,7 +28,6 @@ function [Gn,On,conditions,Tn]=multiRound(Go_,Oo,G_shared,n)
                 end
             end
             c=findP(P,index,comb);% Conditions: the indices of omitted triples
-            %if strcmp(delta{2}{index,1},Go{num,2})
             if c(1)==-1
                 send_num=send_num+1;
                 [Gn{send_num,:}]=deal(Go{i,:});

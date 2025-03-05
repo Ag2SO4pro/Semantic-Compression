@@ -1,3 +1,4 @@
+% function to find the corresponding quadruple in shared probability graph
 function delta=findQuadruple(G_shared,d)
     num=size(G_shared,1);
     for i=1:num
