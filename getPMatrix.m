@@ -1,22 +1,13 @@
-function P=getPMatrix(delta,Oo,G_shared,dimensions)
-    depth=length(dimensions);
-    i=ones(1,depth-1);
-    i=num2cell(i);
-    P=zeros(dimensions);
-    while(1)
-        %% Counter
-        for count=1:depth-1
-            if i{count}>dimensions(count)
-                i{count}=1;
-                i{count+1}=i{count+1}+1;
-            end
-        end
+function P=getPMatrix(delta,Oo,G_shared,comb)
+    depth=size(comb,2);
+    P=zeros(size(comb,1),size(delta{2},1));
+    for c=1:size(comb,1)
         %% Calculate P
         O_n=cell(1,depth);
         Ns=[];
         flag=0;
-        for p=1:depth-1
-            O_n{p}=Oo{p}(i{p},:);
+        for p=1:depth
+            O_n{p}=Oo(comb(c,p),:);
             sample_s=[];
             for d=1:size(G_shared,1)
                 if (strcmp(G_shared{d,1},O_n{p}{1})&&strcmp(G_shared{d,3},O_n{p}{3}))
@@ -38,19 +29,13 @@ function P=getPMatrix(delta,Oo,G_shared,dimensions)
         sample_k=[];
         for r =1:size(delta{2},1)
             sample_k=union(sample_k,delta{2}{r,2});
-            P(i{:},r)=length(intersect(delta{2}{r,2},Ns));
+            P(c,r)=length(intersect(delta{2}{r,2},Ns));
         end
         sample_k=intersect(sample_k,Ns);
         if sample_k~=0
-            P(i{:},:)=P(i{:},:)/length(sample_k);
+            P(c,:)=P(c,:)/length(sample_k);
         else
-            P(i{:},:)=0;
-        end
-        %% Counter
-        if all(cell2mat(i)==dimensions(1:depth-1))
-            break;
-        else
-            i{1}=i{1}+1;
+            P(c,:)=0;
         end
     end
 end

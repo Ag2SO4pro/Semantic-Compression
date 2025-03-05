@@ -1,37 +1,20 @@
-function conditions=findP(P,index)
+function conditions=findP(P,index,comb)
     dimensions=size(P);
-    depth=length(dimensions);
-    i=ones(1,depth-1);
-    i=num2cell(i);
-    conditions=ones(1,depth-1);
-    conditions=conditions*-1;
-    while(1)
-        %% Counter
-        for count=1:depth-1
-            if i{count}>dimensions(count)
-                i{count}=1;
-                i{count+1}=i{count+1}+1;
-            end
-        end
-       %[maxItem,maxIndex]=max(P(i{:},:));
+    depth=size(comb,1);
+    conditions=-1;
+    for i=1:depth
        maxItem=-1;
        for k=1:dimensions(end)
-           if P(i{:},k)>maxItem
-               maxItem=P(i{:},k);
+           if P(i,k)>maxItem
+               maxItem=P(i,k);
                maxIndex=k;
-           elseif P(i{:},k)==maxItem
+           elseif P(i,k)==maxItem
                maxIndex=-1;
            end
        end
        if (maxItem>0&&maxIndex==index)
-           conditions=cell2mat(i);
+           conditions=comb(i,:);
            break;
        end
-        %% Counter
-        if all(cell2mat(i)==dimensions(1:depth-1))
-            break;
-        else
-            i{1}=i{1}+1;
-        end
     end
 end
