@@ -23,7 +23,7 @@ And example of `G_shared` and `G` is given in the example file.
 - `send`: Semantic triples that needs to be sent. Same format as input `G`.
 - `omit`: Semantic triples whose relations are omitted. It will be a $M \times 1$ cell and $M$ is the number of rounds occurs during compression.
 The $m$-th cell contains the triples whose relations are omitted in the $m$-th round.
-- `conditions`: Corresponding conditions when omitting semantic triples. It is an $(M-1)\times 1$ cell, as the first round of compression won't produce any conditions. The $m$-th cell contains conditions of the $m+1$ round. For example, condition $[a,b]$ in the third round, represents that the corresponding relation has the maximum occurrence probability when the $a$-th and $b$-th triple omitted last round, or in the last cycle this round if $a$ or $b$ is larger than the number of triples omitted last round.
+- `conditions`: Corresponding conditions when omitting semantic triples. It is an $(M-1)\times 1$ cell, as the first round of compression won't produce any conditions. The $m$-th cell contains conditions of the $m+1$ round. For example, condition $[a,b]$ in the third round, represents that the corresponding relation has the maximum occurrence probability when the relation of the $a$-th and $b$-th triple omitted last round, or in the last cycle this round if $a$ or $b$ is larger than the number of triples omitted last round, establish.
 
 ### Test example
 The example is demonstrated in [example.m](./example/m), the mat file [example.mat](./example.mat) contains extracted semantic triples and knowledge graph. The variable `sample_map` indicates the corresponding sample time to sample index.
@@ -47,7 +47,7 @@ The experiment data `G` and `G_shared` is provided in [example.mat](example.mat)
 #### Experiment result
 ![example](./example.jpg)
 
-It is worthnoting that all the sensor conditions for compression is included in the shared probability graph (no new participants ,no new sensors nor unknown sensor conditions), so after abundant rounds of compression we can omit all triples in this case. When there are new triples to send, it is impossible to omit all triples as these new triples don't exist in the shared probability graph.
+It is worthnoting that all the sensor conditions for compression are included in the shared probability graph (no new participants ,no new sensors nor unknown sensor conditions), so after abundant rounds of compression we can omit all triples in this case. When there are new triples to send, it is impossible to omit all triples as these new triples don't exist in the shared probability graph.
 
 ### Reference
 [1] Z. Yang, M. Chen, Z. Zhang and C. Huang, "Energy Efficient Semantic Communication Over Wireless Networks With Rate Splitting," in IEEE Journal on Selected Areas in Communications, vol. 41, no. 5, pp. 1484-1495, May 2023, doi: 10.1109/JSAC.2023.3240713.
