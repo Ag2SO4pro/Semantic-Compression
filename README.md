@@ -46,6 +46,7 @@ The experiment data `G` and `G_shared` is provided in [example.mat](example.mat)
 
 #### Experiment result
 ![example](./example.jpg)
+It is worthnoting that all the sensor conditions for compression is included in the shared probability graph (no new participants ,no new sensors nor unknown sensor conditions), so after abundant rounds of compression we can omit all triples in this case. When there are new triples to send, it is impossible to omit all triples as these new triples don't exist in the shared probability graph.
 
 ### Reference
 [1] Z. Yang, M. Chen, Z. Zhang and C. Huang, "Energy Efficient Semantic Communication Over Wireless Networks With Rate Splitting," in IEEE Journal on Selected Areas in Communications, vol. 41, no. 5, pp. 1484-1495, May 2023, doi: 10.1109/JSAC.2023.3240713.
